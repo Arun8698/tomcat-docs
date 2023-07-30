@@ -38,3 +38,16 @@ For manager app gui and all stuff: to modify tomcat-users.xml --> use this:
   <role rolename="manager-jmx"/>
   <user name="admin" password="admin" roles="admin-gui,admin-script,manager-gui,manager-status,manager-script,manager-jmx"/>
 </tomcat-users>
+
+
+# If we are using both windows wise and server wise deployment: 
+--> use different passwords for those in tomcat-users.xml
+
+
+
+# How to fix 403 Access Denied in Tomcat?
+Tomcat: 403 access denied on manager
+Go to /path/to/tomcat/webapp/manager/META-INF.
+Edit file context.xml, and remove/comment-out the following lines: <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+Save context.xml.
+Restart Tomcat.
